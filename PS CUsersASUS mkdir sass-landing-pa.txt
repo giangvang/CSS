@@ -1,0 +1,263 @@
+PS C:\Users\ASUS> mkdir sass-landing-page
+
+
+    Directory: C:\Users\ASUS
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        10/17/2026  10:13 PM                sass-landing-page
+
+
+PS C:\Users\ASUS> cd sass-landing-page
+PS C:\Users\ASUS\sass-landing-page> mkdir scss, scss/abstracts, scss/base, scss/layout, scss/components, css
+
+
+    Directory: C:\Users\ASUS\sass-landing-page
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        10/17/2026  10:13 PM                scss
+
+
+    Directory: C:\Users\ASUS\sass-landing-page\scss
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        10/17/2026  10:13 PM                abstracts
+d-----        10/17/2026  10:13 PM                base
+d-----        10/17/2026  10:13 PM                layout
+d-----        10/17/2026  10:13 PM                components
+
+
+    Directory: C:\Users\ASUS\sass-landing-page
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        10/17/2026  10:13 PM                css
+
+
+PS C:\Users\ASUS\sass-landing-page> @'
+>> <!DOCTYPE html>
+>> <html lang="vi">
+>> <head>
+>>     <meta charset="UTF-8">
+>>     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+>>     <title>SASS Landing Page</title>
+>>     <link rel="stylesheet" href="css/style.css">
+>> </head>
+>> <body>
+>>     <header class="header">
+>>         <nav class="nav">
+>>             <div class="logo">TechStore</div>
+>>             <ul class="menu">
+>>                 <li><a href="#">Trang chủ</a></li>
+>>                 <li><a href="#">Sản phẩm</a></li>
+>>                 <li><a href="#">Liên hệ</a></li>
+>>             </ul>
+>>         </nav>
+>>         <div class="hero">
+>>             <h1>Khám Phá Công Nghệ Đỉnh Cao</h1>
+>>             <p>Nâng tầm cuộc sống với các thiết bị thông minh thế hệ mới.</p>
+>>         </div>
+>>     </header>
+>>
+>>     <section class="products">
+>>         <h2>Sản phẩm nổi bật</h2>
+>>         <div class="product-grid">
+>>             <div class="card">Sản phẩm 1</div>
+>>             <div class="card">Sản phẩm 2</div>
+>>             <div class="card">Sản phẩm 3</div>
+>>         </div>
+>>     </section>
+>>
+>>     <section class="stats">
+>>         <div class="stat-item">
+>>             <h3>1000+</h3>
+>>             <p>Khách Hàng</p>
+>>         </div>
+>>         <div class="stat-item">
+>>             <h3>500+</h3>
+>>             <p>Sản Phẩm</p>
+>>         </div>
+>>     </section>
+>>
+>>     <footer class="footer">
+>>         <p>&copy; 2026 TechStore. Tất cả các quyền được bảo lưu.</p>
+>>     </footer>
+>> </body>
+>> </html>
+>> '@ | Out-File -FilePath "index.html" -Encoding UTF8
+PS C:\Users\ASUS\sass-landing-page> @'
+>> $primary: #3498db;
+>> $secondary: #2c3e50;
+>> $bg-light: #ecf0f1;
+>> $text-dark: #333;
+>> $white: #fff;
+>> $font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+>> '@ | Out-File -FilePath "scss\abstracts\_variables.scss" -Encoding UTF8
+PS C:\Users\ASUS\sass-landing-page>
+PS C:\Users\ASUS\sass-landing-page> @'
+>> @mixin flex-center {
+>>   display: flex;
+>>   justify-content: center;
+>>   align-items: center;
+>> }
+>>
+>> @mixin flex-between {
+>>   display: flex;
+>>   justify-content: space-between;
+>>   align-items: center;
+>> }
+>>
+>> @mixin card-style {
+>>   background: white;
+>>   padding: 30px;
+>>   border-radius: 8px;
+>>   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+>>   transition: transform 0.3s ease;
+>>   &:hover { transform: translateY(-5px); }
+>> }
+>> '@ | Out-File -FilePath "scss\abstracts\_mixins.scss" -Encoding UTF8
+PS C:\Users\ASUS\sass-landing-page> @'
+>> @use "../abstracts/variables" as *;
+>>
+>> body {
+>>   font-family: $font-main;
+>>   margin: 0;
+>>   color: $text-dark;
+>> }
+>> h1, h2, h3 { text-align: center; }
+>> ul { list-style: none; padding: 0; margin: 0; }
+>> a { text-decoration: none; }
+>> '@ | Out-File -FilePath "scss\base\_global.scss" -Encoding UTF8
+PS C:\Users\ASUS\sass-landing-page> @'
+>> @use "../abstracts/variables" as *;
+>> @use "../abstracts/mixins" as *;
+>>
+>> .header {
+>>   background: $secondary;
+>>   color: $white;
+>>
+>>   .nav {
+>>     @include flex-between;
+>>     padding: 15px 50px;
+>>     background: darken($secondary, 5%);
+>>
+>>     .logo { font-size: 24px; font-weight: bold; color: $primary; }
+>>     .menu {
+>>       display: flex;
+>>       gap: 30px;
+>>       a { color: $white; &:hover { color: $primary; } }
+>>     }
+>>   }
+>>
+>>   .hero {
+>>     padding: 100px 20px;
+>>     text-align: center;
+>>     h1 { color: $primary; font-size: 40px; margin-bottom: 10px; }
+>>   }
+>> }
+>>
+>> .footer {
+>>   text-align: center;
+>>   padding: 20px;
+>>   background: darken($secondary, 10%);
+>>   color: $white;
+>> }
+>> '@ | Out-File -FilePath "scss\layout\_layout.scss" -Encoding UTF8
+PS C:\Users\ASUS\sass-landing-page> @'
+>> @use "../abstracts/variables" as *;
+>> @use "../abstracts/mixins" as *;
+>>
+>> .products {
+>>   padding: 60px 20px;
+>>   background: $bg-light;
+>>
+>>   .product-grid {
+>>     @include flex-center;
+>>     gap: 30px;
+>>     margin-top: 40px;
+>>
+>>     .card {
+>>       @include card-style;
+>>       width: 250px;
+>>       text-align: center;
+>>     }
+>>   }
+>> }
+>>
+>> .stats {
+>>   @include flex-between;
+>>   justify-content: space-around;
+>>   padding: 60px 20px;
+>>   background: $primary;
+>>   color: $white;
+>>
+>>   .stat-item {
+>>     text-align: center;
+>>     h3 { margin: 0; font-size: 45px; }
+>>     p { font-size: 18px; margin-top: 10px; text-transform: uppercase; }
+>>   }
+>> }
+>> '@ | Out-File -FilePath "scss\components\_components.scss" -Encoding UTF8
+PS C:\Users\ASUS\sass-landing-page> @'
+>> @use "base/global";
+>> @use "layout/layout";
+>> @use "components/components";
+>> '@ | Out-File -FilePath "scss\main.scss" -Encoding UTF8
+PS C:\Users\ASUS\sass-landing-page> sass scss/main.scss css/style.css
+Deprecation Warning [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+11 │     background: darken($secondary, 5%);
+   │                 ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    scss\layout\_layout.scss 11:17  @use
+    scss\main.scss 2:1              root stylesheet
+
+Deprecation Warning [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -20.564516129%)
+color.adjust($color, $lightness: -5%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+11 │     background: darken($secondary, 5%);
+   │                 ^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    scss\layout\_layout.scss 11:17  @use
+    scss\main.scss 2:1              root stylesheet
+
+Deprecation Warning [global-builtin]: Global built-in functions are deprecated and will be removed in Dart Sass 3.0.0.
+Use color.adjust instead.
+
+More info and automated migrator: https://sass-lang.com/d/import
+
+   ╷
+31 │   background: darken($secondary, 10%);
+   │               ^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    scss\layout\_layout.scss 31:15  @use
+    scss\main.scss 2:1              root stylesheet
+
+Deprecation Warning [color-functions]: darken() is deprecated. Suggestions:
+
+color.scale($color, $lightness: -41.1290322581%)
+color.adjust($color, $lightness: -10%)
+
+More info: https://sass-lang.com/d/color-functions
+
+   ╷
+31 │   background: darken($secondary, 10%);
+   │               ^^^^^^^^^^^^^^^^^^^^^^^
+   ╵
+    scss\layout\_layout.scss 31:15  @use
+    scss\main.scss 2:1              root stylesheet
